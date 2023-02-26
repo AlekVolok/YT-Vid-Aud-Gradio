@@ -90,13 +90,13 @@ def simple_download(url_paths, dl_path=None, convert_to_mp3=False):
 
 with gr.Blocks() as downloader:
     
-    input_link = gr.Textbox(label="YouTube links", placeholder="copy youtube link here", interactive=True, lines=5)
+    input_link = gr.Textbox(label="YouTube links", placeholder="Copy youtube links here", interactive=True, lines=2)
     checkbox_convert_to_mp3 = gr.Checkbox(label="Create .mp3 files from videos" )
-    download_path = gr.Textbox(label="Path to Download", max_lines=1)
+    download_path = gr.Textbox(label="Path to Download", max_lines=1, placeholder="download folder path (works only if runs on localhost)")
+    download_btn = gr.Button("Download")
     output_vids = gr.Files(label="Downloaded videos", visible=True)
     output_audios = gr.Files(label="Downloaded audios", visible=True)
 
-    download_btn = gr.Button("Download")
     download_btn.click(fn=simple_download, inputs=[input_link, download_path, checkbox_convert_to_mp3], outputs=[output_vids, output_audios])
 
 downloader.launch(server_name="0.0.0.0", server_port=7860, show_error=True)
