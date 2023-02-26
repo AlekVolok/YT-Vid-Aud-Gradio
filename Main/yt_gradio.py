@@ -72,7 +72,7 @@ def simple_download(url_paths, dl_path=None, convert_to_mp3=False):
         dl_path = ""
     # clean_folder(dl_path)
     
-    urls = url_paths.split("\n")
+    urls = url_paths.split(" ")
     for url in urls:
         
         # Download videos and store their paths
@@ -90,9 +90,9 @@ def simple_download(url_paths, dl_path=None, convert_to_mp3=False):
 
 with gr.Blocks() as downloader:
     
-    input_link = gr.Textbox(label="YouTube links", placeholder="copy youtube link here", value="https://youtu.be/dQw4w9WgXcQ")
+    input_link = gr.Textbox(label="YouTube links", placeholder="copy youtube link here", interactive=True, lines=5)
     checkbox_convert_to_mp3 = gr.Checkbox(label="Create .mp3 files from videos" )
-    download_path = gr.Textbox(label="Path to Download")
+    download_path = gr.Textbox(label="Path to Download", max_lines=1)
     output_vids = gr.Files(label="Downloaded videos", visible=True)
     output_audios = gr.Files(label="Downloaded audios", visible=True)
 
